@@ -1,0 +1,64 @@
+{% extends "app/layout.html" %}
+{% load static%}
+{% load i18n %}
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<img src="{% static 'app/img/hand.jpg' %}" alt="Hi there!" width="100" height="120">
+<div class="container">
+    <h1 class="header">   Hi there! <br>Let's get started.</h1><br>
+    <form method="POST" action="">
+        {% csrf_token %}
+
+        <p><b>User name:</b></p><br>
+        <p>{{form.username}}</p>
+
+        <p><b>Email:</b></p><br>
+        <p>{{form.email}}</p>
+
+
+        <p><b>Password:</b></p><br>
+        <p>{{form.password1}}</p>
+
+        <p><b>Confirm password:</b></p><br>
+        <p>{{form.password2}}</p>
+        <br><br>
+        <p> <button type="submit" value="Continue" class="button" name="CreateUser"><p>Continue</p></button></p><br>
+        {{form.errors}}
+        <p><strong> OR </strong></p><br>
+
+        <p><a href="{% url 'login' %}">Sing in</a></p> <br>
+        <div>
+
+            <p> <a href="{% url 'social:begin' 'google-oauth2' %}"> Google</a></p>
+
+        </div>
+    </form>
+
+    <div>
+        <p>Share your contacts with one touch!</p>
+    </div>
+</div>
+ {% endblock %}
+
+
+
+
+
+
+
+
+
+{% block scripts %}
+
+    {% load staticfiles %}
+<script src="{% static 'app/scripts/jquery.validate.min.js' %}"></script>
+
+{% endblock %}

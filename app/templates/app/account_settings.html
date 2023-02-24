@@ -1,0 +1,44 @@
+{% extends "app/layout.html" %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+<style>
+    .profile_pic {
+        border-radius: 500px;
+        width: 200px;
+        height: 200px;
+        text-align: center;
+    }
+</style>
+<div class="container">
+
+	<a href="{% url 'user' %}"> &#8592; Back to Profile</a>
+
+	<h3 style="text-align: center">Account Settings</h3><br>
+
+	<p><img class="profile_pic" src="{{request.user.customer.profile_pic.url}}"></p>
+
+	<form method="POST" action="" enctype="multipart/form-data">
+		{% csrf_token %}
+
+		{{form.bio}}
+		{{form.name}}
+		{{form.phone}}
+		{{form.email}}
+		{{form.website_url}}
+		{{form.facebook_url}}
+		{{form.twitter_url}}
+		{{form.instagram_url}}
+		{{form.pinterest_url}}<br>
+		{{form.profile_pic}}<br>
+
+
+
+		<input class="btn btn-primary" type="submit" name="Update Information">
+	</form>
+
+</div>
+
+
+
+{% endblock %}

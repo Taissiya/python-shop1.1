@@ -1,0 +1,104 @@
+{% extends "app/layout.html" %}
+{% load i18n %}
+{% block content %}
+{% load static%}
+
+<style>
+    .tasks__title {
+        margin: 50px 0 20px 0;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .tasks__list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .tasks__item {
+        transition: background-color 0.5s;
+        margin-bottom: 10px;
+        padding: 5px;
+        text-align: center;
+        border: 2px solid white;
+        border-radius: 100px;
+        cursor: move;
+        background-color: white;
+        transition: background-color 0.5s;
+        width: 100px;
+        height:100px;
+    }
+
+        .tasks__item:last-child {
+            margin-bottom: 0;
+        }
+
+    .selected {
+        opacity: 0.6;
+    }
+
+    .profile_pic {
+        width: 200px;
+        height: 200px;
+        border-radius: 100px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        {% if user.is_authenticated %}
+        <a href="{% url 'account' %}"> Edit account</a>
+        {% endif %}
+        <br>
+        <p><img class="profile_pic" src="{{ request.user.customer.profile_pic.url }}" alt="Hi there!"> </p><br>
+        <p class="user_name">{{ request.user.customer.name }}</p>
+        <p> {{ request.user.customer.bio }} </p><br><br>
+        <div class="tasks__list">
+            {% if request.user.customer.website_url %}
+            <a href="{{ request.user.customer.website_url }}"> <img class="soc_nets tasks__item" src="{% static 'app/img/website.png' %}" /> </a>
+            {% endif %}
+
+            {% if request.user.customer.facebook_url %}
+            <a href="{{ request.user.customer.facebook_url }}"> <img class="soc_nets tasks__item" src="{% static 'app/img/facebook.png' %}" /> </a>
+            {% endif %}
+
+            {% if request.user.customer.twitter_url %}
+
+            <a href="{{ request.user.customer.twitter_url }}"> <img class="soc_nets tasks__item" src="{% static 'app/img/twitter.png' %}" /> </a>
+
+            {% endif %}
+
+            {% if request.user.customer.instagram_url %}
+
+            <a href="{{ request.user.customer.instagram_url }}"> <img class="soc_nets tasks__item" src="{% static 'app/img/inst.png' %}" /> </a>
+
+            {% endif %}
+
+            {% if request.user.customer.pinterest_url %}
+
+            <a href="{{ request.user.customer.pinterest_url }}"> <img class="soc_nets tasks__item" src="{% static 'app/img/pinterest.png' %}" /> </a>
+
+            {% endif %}
+
+
+        </div>
+    </div>
+          
+
+            
+   
+        <br>
+        <br>
+        <br>
+        <br>
+
+    <script src="{% static 'app/scripts/SocialNetsBlock.js' %}"></script>
+</body>
+
+
+
+
+{% endblock %}
+
+

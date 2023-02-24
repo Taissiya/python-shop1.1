@@ -1,0 +1,65 @@
+{% extends "app/layout.html" %}
+{% load static%}
+{% load i18n %}
+{% block content %}
+
+<body>
+    <img src="{% static 'app/img/hand.jpg' %}" alt="Hi there!" width="100" height="120">
+    <div class="container">
+        <h1 class="header">{% trans "Hi there!" %}</h1>
+        <form method="POST" action="">
+            {% csrf_token %}
+
+
+            <p><b>Username:</b></p>
+            <p> <input type="text" name="username" class="form-control"></p><br><br>
+
+            <p><b>Password:</b></p>
+            <p><input type="password" name="password" class="form-control"></p><br><br>
+
+            <p> <button type="submit" value="Continue" class="button"><p>Continue</p></button></p><br><br>
+
+
+        </form>
+
+        <div>
+            {% for message in messages %}
+            <p id="messages">{{message}}</p>
+            {% endfor %}
+        </div>
+        <p><strong> OR </strong></p><br>
+
+        <div>
+            <p> <a href="{% url 'social:begin' 'google-oauth2' %}"> Google</a></p><br>
+        </div>
+
+        <div>
+            <div class="">
+                <p> <a href="{% url 'register' %}" class="">Sign Up</a></p><br>
+            </div>
+            <div class="">
+                <p> <a href="{% url 'reset_password' %}" class="">Reset password</a></p><br>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div>
+            <p>Share your contacts with one touch!</p>
+        </div>
+    </div>
+</body>
+
+
+{% endblock %}
+
+
+{% block scripts %}
+
+    {% load staticfiles %}
+<script src="{% static 'app/scripts/jquery.validate.min.js' %}"></script>
+
+{% endblock %}
